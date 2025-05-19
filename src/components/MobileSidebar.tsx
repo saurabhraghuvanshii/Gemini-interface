@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { X, Menu, Diamond, Settings } from 'lucide-react';
 
 interface SidebarItemProps {
@@ -59,7 +60,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="flex-1 px-2 py-4 space-y-1">
                     <SidebarItem
-                        icon={<img src="/NewChat.svg" alt="New Chat" className="w-5 h-5" />}
+                        icon={<Image src="/NewChat.svg" alt="New Chat" width={20} height={20} />}
                         label="New chat"
                         active
                         collapsed={!expanded}
