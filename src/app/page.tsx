@@ -43,7 +43,7 @@ function App() {
       <MobileSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <Header toggleSidebar={toggleSidebar} />
-        <main className="flex-1 overflow-y-auto flex flex-col">
+        <main className="flex-1 overflow-y-auto flex flex-col pb-16 sm:pb-0">
           {showWelcome ? (
             <div className="flex flex-1 items-center justify-center">
               <Greeting name="Friend" />
@@ -53,10 +53,10 @@ function App() {
           )}
         </main>
         {showWelcome && (
-            <div className="hidden sm:flex p-2">
-              <SuggestionCards />
-            </div>
-          )}
+          <div className="hidden sm:flex p-2">
+            <SuggestionCards />
+          </div>
+        )}
         <div className="sticky bottom-0 bg-[#1E1E1E] z-10">
           <ChatInput onSendMessage={handleSendMessage} />
         </div>
@@ -66,4 +66,3 @@ function App() {
 }
 
 export default App;
-
