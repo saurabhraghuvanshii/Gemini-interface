@@ -1,9 +1,69 @@
-import Image from "next/image";
+"use client"
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import MobileSidebar from '../components/MobileSidebar';
+import Greeting from '../components/Greeting';
+import SuggestionCards from '../components/SuggestionCards';
+import ChatInput from '../components/ChatInput';
+import Canvas from '../components/Canvas';
 
-export default function Home() {
+function App() {
+  const [conversations, setConversations] = useState<Array<{
+    role: 'user' | 'assistant';
+    content: string;
+  }>>([]);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleSendMessage = (message: string) => {
+    // Add user message
+    setConversations(prev => [...prev, { role: 'user', content: message }]);
+
+    // Hide welcome screen
+    setShowWelcome(false);
+
+    // Simulate AI response after a short delay
+    setTimeout(() => {
+      setConversations(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `I received your message: "${message}". This is a simulated response from the Gemini-like interface.`
+        }
+      ]);
+    }, 1000);
+  };
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   return (
-    <div className="">
-      
+    <div className="flex h-screen bg-[#1E1E1E] text-[#E8EAED]">
+      <Sidebar />
+      <MobileSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header toggleSidebar={toggleSidebar} />
+        <main className="flex-1 flex flex-col">
+          {showWelcome ? (
+            <div className="flex flex-1 items-center justify-center">
+              <Greeting name="Friend" />
+            </div>
+          ) : (
+            <Canvas conversations={conversations} />
+          )}
+        </main>
+        {showWelcome && (
+          <div className="hidden sm:flex">
+            <SuggestionCards />
+          </div>
+        )}
+        <div className="bg-[#1E1E1E] pt-4">
+          <ChatInput onSendMessage={handleSendMessage} />
+        </div>
+      </div>
     </div>
   );
 }
+
+export default App;
+
