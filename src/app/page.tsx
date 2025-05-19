@@ -57,7 +57,7 @@ function App() {
             <Canvas conversations={conversations} />
           )}
         </div>
-        <div className="sticky bottom-0 bg-[#1E1E1E] w-full z-10">
+        <div className="sticky bottom-0 bg-[#1E1E1E] w-full z-10 overflow-hidden">
           <ChatInput onSendMessage={handleSendMessage} />
         </div>
       </div>
