@@ -38,28 +38,22 @@ function App() {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
-    <div className="flex h-screen bg-[#1E1E1E] text-[#E8EAED]">
-      <Sidebar />
-      <MobileSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header toggleSidebar={toggleSidebar} />
-        <main className="flex-1 flex flex-col">
-          {showWelcome ? (
-            <div className="flex flex-1 items-center justify-center">
-              <Greeting name="Friend" />
+    <div className="flex flex-col h-screen">
+      <Header toggleSidebar={toggleSidebar} />
+      <main className="flex-1 overflow-y-auto">
+        {showWelcome ? (
+          <div>
+            <Greeting name="Friend" />
+            <div className="hidden sm:flex">
+              <SuggestionCards />
             </div>
-          ) : (
-            <Canvas conversations={conversations} />
-          )}
-        </main>
-        {showWelcome && (
-          <div className="hidden sm:flex">
-            <SuggestionCards />
           </div>
+        ) : (
+          <Canvas conversations={conversations} />
         )}
-        <div className="bg-[#1E1E1E] pt-4">
-          <ChatInput onSendMessage={handleSendMessage} />
-        </div>
+      </main>
+      <div className="sticky bottom-0 bg-[#1E1E1E] z-10">
+        <ChatInput onSendMessage={handleSendMessage} />
       </div>
     </div>
   );
