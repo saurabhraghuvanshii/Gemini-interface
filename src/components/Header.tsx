@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     return (
-        <header className="bg-[#1E1E1E] h-14 flex items-center justify-between px-4">
+        <header className="bg-[#1E1E1E] h-14 flex items-center justify-between px-2 sm:px-4 flex-shrink-0">
             <div className="flex items-center gap-2">
                 <Tooltip content="Menu" side="bottom">
                     <button
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
                     <ChevronDown size={14} className="text-[#9AA0A6]" />
                 </div>
             </div>
-
+            
             <div className="flex items-center gap-2">
                 <button className="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0] text-white rounded-lg px-3 py-1.5 text-sm font-medium cursor-pointer">
                     <CreditCard size={14} />

@@ -12,7 +12,7 @@ const Canvas: React.FC<CanvasProps> = ({ conversations }) => {
   if (conversations.length === 0) return null;
   
   return (
-    <div className="max-w-3xl mx-auto w-full px-4 py-6">
+    <div className="flex-1 w-full max-w-3xl mx-auto px-4 py-4 overflow-y-auto">
       {conversations.map((message, index) => (
         <div key={index} className={`flex gap-4 mb-6 ${message.role === 'assistant' ? 'items-start' : 'items-center'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
